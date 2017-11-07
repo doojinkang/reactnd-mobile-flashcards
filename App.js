@@ -10,6 +10,7 @@ const Stack = StackNavigator({
     navigationOptions: {
       headerTintColor: 'white',
       headerStyle: {
+        height: 80,
         backgroundColor: 'purple',
       },
       title: 'Deck List',
@@ -20,6 +21,7 @@ const Stack = StackNavigator({
     navigationOptions: {
       headerTintColor: 'white',
       headerStyle: {
+        height: 80,
         backgroundColor: 'purple',
       },
       title: 'Deck Detail',

@@ -15,16 +15,23 @@ class DeckList extends Component {
 
   render() {
     const navigate = this.props.navigation.navigate
-    const deckTitles = Object.keys(this.state)
+    const decks = this.state
+
+    // Object.keys(decks).map((title) => {
+    //   console.log(decks[title].questions.length)
+    // })
+
     return (
       <ScrollView>
         <View style={styles.container}>
-          { deckTitles.map((title) => (
-            <Text
+          {Object.keys(decks).map((title) => (
+            <TouchableOpacity
               style={styles.deck}
               key={title}
-              onPress={() => navigate('DeckDetail', { deck: this.state[title] })}
-            >{title}</Text>
+              onPress={() => navigate('DeckDetail', { deck: this.state[title] })} >
+              <Text style={styles.title}>{title}</Text>
+              <Text>{decks[title].questions.length} cards</Text>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
@@ -39,10 +46,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    fontSize: 20,
+  },
   deck: {
     height: 100,
-    textAlign: 'center',
-    textAlignVertical: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'stretch',
