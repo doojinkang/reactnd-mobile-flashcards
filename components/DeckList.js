@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 
 import { getDecks } from '../utils/api'
 
@@ -17,15 +17,17 @@ class DeckList extends Component {
     const navigate = this.props.navigation.navigate
     const deckTitles = Object.keys(this.state)
     return (
-      <View style={styles.container}>
-        { deckTitles.map((title) => (
-          <Text
-            style={styles.deck}
-            key={title}
-            onPress={() => navigate('DeckDetail', { deck: this.state[title] })}
-          >{title}</Text>
-        ))}
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          { deckTitles.map((title) => (
+            <Text
+              style={styles.deck}
+              key={title}
+              onPress={() => navigate('DeckDetail', { deck: this.state[title] })}
+            >{title}</Text>
+          ))}
+        </View>
+      </ScrollView>
     )
   }
 }
