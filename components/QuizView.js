@@ -2,20 +2,21 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import TextButton from './TextButton'
 
-class DeckDetail extends Component {
+class QuizView extends Component {
 
   render() {
     const navigate = this.props.navigation.navigate
-    const { deck } = this.props.navigation.state.params
+    const { questions } = this.props.navigation.state.params.deck
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{deck.title}</Text>
-        <Text style={styles.subtitle}>{deck.questions.length} cards</Text>
+        <Text style={styles.title}>{questions[0].question}</Text>
+        <TextButton onPress={() => console.log('Answer')} reverse>
+          Answer
+        </TextButton>
         <TextButton onPress={() => console.log('add Card')} reverse>
           Add Card
         </TextButton>
-        <TextButton
-          onPress={() => navigate('QuizView', { deck })} >
+        <TextButton onPress={() => console.log('start Quiz')}>
           Start Quiz
         </TextButton>
       </View>
@@ -39,5 +40,5 @@ const styles = StyleSheet.create({
   },
 })
 
-export default DeckDetail
+export default QuizView
 

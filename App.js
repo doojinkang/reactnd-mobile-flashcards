@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation'
 
 import DeckList from './components/DeckList'
 import DeckDetail from './components/DeckDetail'
+import QuizView from './components/QuizView'
 
 const Stack = StackNavigator({
   DeckList: {
@@ -26,7 +27,17 @@ const Stack = StackNavigator({
       },
       title: 'Deck Detail',
     }
-
+  },
+  QuizView: {
+    screen: QuizView,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        height: 80,
+        backgroundColor: 'purple',
+      },
+      title: 'Quiz View',
+    }
   }
 })
 
