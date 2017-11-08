@@ -9,15 +9,16 @@ class QuizView extends Component {
     const { questions } = this.props.navigation.state.params.deck
     return (
       <View style={styles.container}>
+        <Text style={styles.count}> 1/2 </Text>
         <Text style={styles.title}>{questions[0].question}</Text>
-        <TextButton onPress={() => console.log('Answer')} reverse>
+        <Text onPress={() => console.log('Answer')} style={styles.answer}>
           Answer
+        </Text>
+        <TextButton onPress={() => console.log('Correct')} color='green'>
+          Correct
         </TextButton>
-        <TextButton onPress={() => console.log('add Card')} reverse>
-          Add Card
-        </TextButton>
-        <TextButton onPress={() => console.log('start Quiz')}>
-          Start Quiz
+        <TextButton onPress={() => console.log('Incorrect')} color='red' >
+          Incorrect
         </TextButton>
       </View>
     )
@@ -25,6 +26,11 @@ class QuizView extends Component {
 }
 
 const styles = StyleSheet.create({
+  count: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -33,10 +39,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
+    marginBottom: 40,
   },
-  subtitle: {
+  answer: {
     fontSize: 18,
-    marginBottom: 20,
+    color: 'red',
+    marginBottom: 30,
   },
 })
 
