@@ -17,20 +17,20 @@ class DeckList extends Component {
     const navigate = this.props.navigation.navigate
     const decks = this.state
 
-    // Object.keys(decks).map((title) => {
-    //   console.log(decks[title].questions.length)
+    // Object.keys(decks).map((key) => {
+    //   console.log(decks[key].questions.length)
     // })
 
     return (
       <ScrollView>
         <View style={styles.container}>
-          {Object.keys(decks).map((title) => (
+          {Object.keys(decks).map((key) => (
             <TouchableOpacity
               style={styles.deck}
-              key={title}
-              onPress={() => navigate('DeckDetail', { deck: this.state[title] })} >
-              <Text style={styles.title}>{title}</Text>
-              <Text>{decks[title].questions.length} cards</Text>
+              key={key}
+              onPress={() => navigate('DeckDetail', { deck: decks[key] })} >
+              <Text style={styles.title}>{key}</Text>
+              <Text>{decks[key].questions.length} cards</Text>
             </TouchableOpacity>
           ))}
         </View>
