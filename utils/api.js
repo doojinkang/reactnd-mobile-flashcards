@@ -40,9 +40,13 @@ const Dummy = {
 export function getDecks() {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
     .then ((results) => {
-      return results === null
-        ? Dummy
-        : results
+      if (results === null) {
+        AsyncStorage.setItem(FLASHCARD_STORAGE_KEY, JSON.stringify(Dummy))
+        return Dummy
+      }
+      else {
+        return JSON.parse(results)
+      }
     })
 }
 

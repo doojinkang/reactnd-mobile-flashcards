@@ -1,6 +1,9 @@
 import React from 'react'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 import { StackNavigator } from 'react-navigation'
 
+import reducer from './reducers'
 import DeckList from './components/DeckList'
 import DeckDetail from './components/DeckDetail'
 import QuizView from './components/QuizView'
@@ -45,7 +48,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Stack />
+      <Provider store={createStore(reducer)}>
+        <Stack />
+      </Provider>
     )
   }
 }
