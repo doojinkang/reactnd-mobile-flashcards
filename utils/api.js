@@ -40,6 +40,7 @@ const Dummy = {
 export function getDecks() {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
     .then ((results) => {
+      console.log('getDecks', results)
       if (results === null) {
         AsyncStorage.setItem(FLASHCARD_STORAGE_KEY, JSON.stringify(Dummy))
         return Dummy
@@ -56,11 +57,15 @@ export function getDeck(id) {
 }
 
 // take in a single title argument and add it to the decks.
-export function saveDeckTitle(title) {
-
+export function submitDeck(deckTitle) {
+  let val = { [deckTitle]: { title: [deckTitle], questions: []} }
+  console.log('submitDeck', JSON.stringify(val))
+  return AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY,
+    JSON.stringify(val)
+  )
 }
 
 // take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title.
-export function addCardToDeck(title, card) {
+export function submitQuiz(deckTitle, question, answer) {
 
 }
