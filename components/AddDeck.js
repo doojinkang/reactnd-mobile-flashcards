@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { Platform } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 
@@ -17,9 +18,8 @@ class AddDeck extends Component {
     const {text} = this.state
     const {decks} = this.props
 
-    console.log('submit')
     if ( decks.includes(text) ) {
-      console.log("already there")
+      alert("Already Exist")
       return
     }
 
@@ -43,7 +43,7 @@ class AddDeck extends Component {
       <View style={styles.container}>
         <Text style={styles.title}>Input new deck name</Text>
         <TextInput
-          style={styles.input}
+          style={ Platform.OS === 'ios' ? styles.input_ios : styles.input_android }
           placeholder="New Deck"
           value={this.state.text}
           onChangeText={(text) => this.setState({text: text.trim()})}
@@ -67,11 +67,17 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 30,
   },
-  input: {
+  input_ios: {
     height: 40,
     fontSize: 24,
     marginBottom: 20,
     borderBottomWidth: 1,
+  },
+  input_android: {
+    height: 40,
+    width: 200,
+    fontSize: 24,
+    marginBottom: 20,
   },
 })
 
