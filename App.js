@@ -13,6 +13,7 @@ import reducer from './reducers'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import DeckDetail from './components/DeckDetail'
+import AddQuiz from './components/AddQuiz'
 import QuizView from './components/QuizView'
 
 function UdaciStatusBar ({ backgroundColor, ...props}) {
@@ -74,6 +75,16 @@ const Stack = StackNavigator({
         backgroundColor: 'purple',
       },
       title: 'Deck',
+    }
+  },
+  AddQuiz: {
+    screen: AddQuiz,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'purple',
+      },
+      title: 'New Quiz',
     }
   },
   QuizView: {

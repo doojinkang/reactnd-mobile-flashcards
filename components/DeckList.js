@@ -31,7 +31,7 @@ class DeckList extends Component {
               key={key}
               onPress={() => navigate('DeckDetail', { deck: decks[key] })} >
               <Text style={styles.title}>{key}</Text>
-              <Text>{decks[key].questions.length} cards</Text>
+              <Text>{decks[key].questions.length} quiz</Text>
             </TouchableOpacity>
           ))}
         </View>

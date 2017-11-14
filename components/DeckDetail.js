@@ -10,9 +10,9 @@ class DeckDetail extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{deck.title}</Text>
-        <Text style={styles.subtitle}>{deck.questions.length} cards</Text>
-        <TextButton onPress={() => console.log('add Card')} reverse>
-          Add Card
+        <Text style={styles.subtitle}>{deck.questions.length} quiz</Text>
+        <TextButton onPress={() => navigate('AddQuiz', { deck })} reverse>
+          Add Quiz
         </TextButton>
         <TextButton
           onPress={() => navigate('QuizView', { deck })} >
