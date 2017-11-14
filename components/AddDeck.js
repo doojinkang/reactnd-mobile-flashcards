@@ -23,19 +23,23 @@ class AddDeck extends Component {
       return
     }
 
-    // update redux
     if (text) {
+      // update redux
       this.props.dispatch(addDeck(text))
+      this.setState(() => ({text: ''}))
+
+      // navigate to DeckList
+      this.props.navigation.dispatch(NavigationActions.back({
+        key: 'AddDeck'
+      }))
+
+      // Save to DB
+      submitDeck(text)
     }
-    this.setState(() => ({text: ''}))
+  }
 
-    // navigate to DeckList
-    this.props.navigation.dispatch(NavigationActions.back({
-      key: 'AddDeck'
-    }))
-
-    // Save to DB
-    submitDeck(text)
+  componentDidMount() {
+    this.refs.text_input.focus()
   }
 
   render() {
@@ -43,6 +47,7 @@ class AddDeck extends Component {
       <View style={styles.container}>
         <Text style={styles.title}>Input new deck name</Text>
         <TextInput
+          ref='text_input'
           style={ Platform.OS === 'ios' ? styles.input_ios : styles.input_android }
           placeholder="New Deck"
           value={this.state.text}
