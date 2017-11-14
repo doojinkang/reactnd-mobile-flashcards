@@ -4,13 +4,24 @@ import { createStore } from 'redux'
 import { StackNavigator } from 'react-navigation'
 import { TabNavigator } from 'react-navigation'
 import { Platform } from 'react-native'
+import { View } from 'react-native'
+import { StatusBar } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { Constants } from 'expo'
 
 import reducer from './reducers'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import DeckDetail from './components/DeckDetail'
 import QuizView from './components/QuizView'
+
+function UdaciStatusBar ({ backgroundColor, ...props}) {
+  return (
+    <View style={{backgroundColor, height: Constants.statusBarHeight}}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
 const Tabs = TabNavigator({
     DeckList: {
@@ -60,7 +71,6 @@ const Stack = StackNavigator({
     navigationOptions: {
       headerTintColor: 'white',
       headerStyle: {
-        height: 80,
         backgroundColor: 'purple',
       },
       title: 'Deck',
@@ -71,7 +81,6 @@ const Stack = StackNavigator({
     navigationOptions: {
       headerTintColor: 'white',
       headerStyle: {
-        height: 80,
         backgroundColor: 'purple',
       },
       title: 'Quiz',
@@ -84,7 +93,10 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
-        <Stack />
+        <View style={{flex: 1}}>
+          <UdaciStatusBar backgroundColor='purple' barStyle='light-content' />
+          <Stack />
+        </View>
       </Provider>
     )
   }
