@@ -1,20 +1,51 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import FlipCard from 'react-native-flip-card'
 
 import TextButton from './TextButton'
 
 class QuizView extends Component {
   state = {
-    flip: false
+    flip: false,
+    current: 0,
+    hit: 0,
+  }
+
+  correct = () => {
+    const {current, hit} = this.state
+    this.setState({current: current + 1})
+    this.setState({hit    : hit     + 1})
+  }
+
+  incorrect = () => {
+    const {current} = this.state
+    this.setState({current: current + 1})
   }
 
   render() {
     const navigate = this.props.navigation.navigate
     const { questions } = this.props.navigation.state.params.deck
+    const { current, hit } = this.state
+
+    if (current === questions.length ) {
+      return (
+        <View style={styles.container}>
+            <Text style={{fontSize: 20}}> Total : {questions.length} </Text>
+            <Text style={{fontSize: 20}}> Hit : {hit} </Text>
+            <Text style={{fontSize: 20}}> Hit Ratio : {hit/questions.length * 100} % </Text>
+            <TextButton
+              onPress={() => this.props.navigation.dispatch(NavigationActions.back())}
+              color='red'>
+              Back
+            </TextButton>
+        </View>
+      )
+    }
+
     return (
       <View style={styles.container}>
-        <Text style={styles.count}> 1/2 </Text>
+        <Text style={styles.count}> {current + 1} / {questions.length} </Text>
 
         <FlipCard
           style={styles.card}
@@ -26,33 +57,31 @@ class QuizView extends Component {
           clickable={false}
           alignHeight={false}
           alignWidth={false}
-          onFlipEnd={(isFlipEnd)=>{console.log('isFlipEnd', isFlipEnd)}}
+          // onFlipEnd={(isFlipEnd)=>{console.log('isFlipEnd', isFlipEnd)}}
         >
 
           <View style={styles.face}>
-            <Text style={styles.title}>{questions[0].question}</Text>
+            <Text style={styles.title}>{questions[current].question}</Text>
             <Text
               onPress={()=>{this.setState({flip: !this.state.flip})}}
               style={styles.answer}>
               Answer
             </Text>
-            <TextButton onPress={() => console.log('Correct')} color='green'>
+            <TextButton onPress={this.correct} color='green'>
               Correct
             </TextButton>
-            <TextButton onPress={() => console.log('Incorrect')} color='red' >
+            <TextButton onPress={this.incorrect} color='red' >
               Incorrect
             </TextButton>
           </View>
 
           <View style={styles.back}>
-            <Text style={styles.title}>{questions[0].answer}</Text>
+            <Text style={styles.title}>{questions[current].answer}</Text>
             <Text
               onPress={()=>{this.setState({flip: !this.state.flip})}}
               style={styles.answer}>
               Back
             </Text>
-
-
           </View>
 
         </FlipCard>
