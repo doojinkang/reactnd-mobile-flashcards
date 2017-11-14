@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
+
 import TextButton from './TextButton'
 
 class DeckDetail extends Component {
 
   render() {
     const navigate = this.props.navigation.navigate
-    const { deck } = this.props.navigation.state.params
+    const { deckTitle } = this.props.navigation.state.params
+    const deck = this.props.decks[deckTitle]
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{deck.title}</Text>
@@ -39,5 +42,13 @@ const styles = StyleSheet.create({
   },
 })
 
-export default DeckDetail
+// To update deck after add Quiz
+// use Redux to get deck
+function mapStateToProps(decks) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(DeckDetail)
 

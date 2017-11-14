@@ -29,7 +29,7 @@ class DeckList extends Component {
             <TouchableOpacity
               style={styles.deck}
               key={key}
-              onPress={() => navigate('DeckDetail', { deck: decks[key] })} >
+              onPress={() => navigate('DeckDetail', { deckTitle: key })} >
               <Text style={styles.title}>{key}</Text>
               <Text>{decks[key].questions.length} quiz</Text>
             </TouchableOpacity>
