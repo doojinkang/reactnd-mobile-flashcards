@@ -1,6 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import devToolsEnhancer from 'remote-redux-devtools';
 import { StackNavigator } from 'react-navigation'
 import { TabNavigator } from 'react-navigation'
 import { Platform } from 'react-native'
@@ -103,7 +104,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer, devToolsEnhancer())}>
         <View style={{flex: 1}}>
           <UdaciStatusBar backgroundColor='purple' barStyle='light-content' />
           <Stack />
