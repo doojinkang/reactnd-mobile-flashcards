@@ -27,9 +27,7 @@ class AddQuiz extends Component {
       this.setState(() => ({question: '', answer: ''}))
 
       // navigate to DeckList
-      this.props.navigation.dispatch(NavigationActions.back({
-        key: 'AddQuiz'
-      }))
+      this.props.navigation.dispatch(NavigationActions.back())
 
       // Save to DB
       submitQuiz(title, question, answer)
