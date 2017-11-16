@@ -4,6 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import FlipCard from 'react-native-flip-card'
 
 import TextButton from './TextButton'
+import { setLocalNotification, clearLocalNotification } from '../utils/helper'
 
 class QuizView extends Component {
   state = {
@@ -29,6 +30,10 @@ class QuizView extends Component {
     const { current, hit } = this.state
 
     if (current === questions.length ) {
+
+      clearLocalNotification()
+        .then(setLocalNotification)
+
       return (
         <View style={styles.container}>
             <Text style={{fontSize: 20}}> Total : {questions.length} </Text>
