@@ -9,7 +9,7 @@ function decks ( state = {}, action) {
     case ADD_DECK:  // deck = { newTitle: { title: deckTitle, questions: []} }
       return {
         ...state,
-        ...{ [action.deckTitle]: { title: [action.deckTitle], questions: []} }
+        ...{ [action.deckTitle]: { title: action.deckTitle, questions: []} }
       }
     case ADD_QUIZ: // deck = { newTitle: { title: 'newTitle', questions: [{ question: '...', answer: '...' }]} }
       return {
