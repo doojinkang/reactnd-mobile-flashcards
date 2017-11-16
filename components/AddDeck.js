@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView } from 'react-native'
 import { Platform } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -42,7 +42,7 @@ class AddDeck extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text style={styles.title}>Input new deck name</Text>
         <TextInput
           ref='text_input'
@@ -54,7 +54,7 @@ class AddDeck extends Component {
         <TextButton onPress={() => this.submit()} reverse>
           ADD
         </TextButton>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }

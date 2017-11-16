@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View, KeyboardAvoidingView } from 'react-native'
 import { Platform } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -42,7 +42,7 @@ class AddQuiz extends Component {
     const { title, questions } = this.props.navigation.state.params.deck
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text style={styles.title}>New Quiz in {title}</Text>
         <Text style={styles.subtitle}>Question</Text>
         <TextInput
@@ -64,7 +64,7 @@ class AddQuiz extends Component {
         <TextButton onPress={this.submit} reverse>
           ADD
         </TextButton>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 24,
-    marginBottom: 30,
+    fontSize: 20,
+    marginBottom: 20,
   },
   subtitle: {
     fontSize: 18,
