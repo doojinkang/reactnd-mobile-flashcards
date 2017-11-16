@@ -53,7 +53,11 @@ export function getDecks() {
 
 // take in a single id argument and return the deck associated with that id.
 export function getDeck(id) {
-
+  return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
+    .then ((results) => {
+      let all = JSON.parse(results)
+      return theDeck = all[id]
+    })
 }
 
 // take in a single title argument and add it to the decks.
@@ -67,5 +71,14 @@ export function submitDeck(deckTitle) {
 
 // take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title.
 export function submitQuiz(deckTitle, question, answer) {
-
+  getDeck(deckTitle)
+    .then ((resultObj => {
+      let questions = resultObj.questions
+      questions.push({ question, answer })
+      let val = { [deckTitle]: { title: [deckTitle], questions} }
+      console.log('submitQuiz', JSON.stringify(val))
+      return AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY,
+        JSON.stringify(val)
+      )
+    }))
 }
