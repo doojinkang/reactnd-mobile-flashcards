@@ -21,7 +21,7 @@ class AddQuiz extends Component {
     const { title } = this.props.navigation.state.params.deck
 
     if ( question && answer) {
-      console.log('-submit', question, answer, title)
+      // console.log('-submit', question, answer, title)
       // update redux
       this.props.dispatch(addQuiz(title, question, answer))
       this.setState(() => ({question: '', answer: ''}))
