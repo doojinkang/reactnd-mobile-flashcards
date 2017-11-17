@@ -24,6 +24,10 @@ class QuizView extends Component {
     this.setState({current: current + 1})
   }
 
+  restart = () => {
+    this.setState({current: 0, hit: 0})
+  }
+
   render() {
     const navigate = this.props.navigation.navigate
     const { questions } = this.props.navigation.state.params.deck
@@ -39,6 +43,11 @@ class QuizView extends Component {
             <Text style={{fontSize: 20}}> Total : {questions.length} </Text>
             <Text style={{fontSize: 20}}> Hit : {hit} </Text>
             <Text style={{fontSize: 20}}> Hit Ratio : {hit/questions.length * 100} % </Text>
+            <TextButton
+              onPress={this.restart}
+              color='blue'>
+              Restart
+            </TextButton>
             <TextButton
               onPress={() => this.props.navigation.dispatch(NavigationActions.back())}
               color='red'>
