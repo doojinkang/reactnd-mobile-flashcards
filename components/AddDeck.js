@@ -29,7 +29,7 @@ class AddDeck extends Component {
       this.setState(() => ({text: ''}))
 
       // navigate to DeckList
-      this.props.navigation.dispatch(NavigationActions.back())
+      this.props.navigation.navigate('DeckDetail', { deckTitle: text })
 
       // Save to DB
       submitDeck(text)
